@@ -7,13 +7,23 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore the default SQLite database.
+/db/*.mysql2
+/db/*.mysql2-journal
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
 
-/node_modules
-/yarn-error.log
-
+# Ignore Byebug command history file.
 .byebug_history
+/config/database.yml
+/config/secrets.yml
+/config/settings/*.yml
+/config/environments/*.yml
+/config/settings.local.yml
+/config/settings/*.local.yml
+/config/environments/*.local.yml
+/public/tmp/*
