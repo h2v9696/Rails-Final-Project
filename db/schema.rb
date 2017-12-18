@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171218111235) do
+ActiveRecord::Schema.define(version: 20171218131503) do
 
   create_table "comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "user_id"
@@ -79,7 +79,6 @@ ActiveRecord::Schema.define(version: 20171218111235) do
 
   create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "email", limit: 500
-    t.string "password", limit: 500
     t.string "first_name", limit: 50
     t.string "last_name", limit: 50
     t.string "city", limit: 90
@@ -90,6 +89,7 @@ ActiveRecord::Schema.define(version: 20171218111235) do
     t.string "address", limit: 100
     t.string "zip", limit: 45
     t.string "fax", limit: 45
+    t.string "password_digest"
   end
 
 end
