@@ -9,13 +9,13 @@ class User < ApplicationRecord
 
   before_save {email.downcase!}
 
-  validates :first_name, presence: true, length: {minimum: 3, maximum: 50}
-  validates :last_name, presence: true, length: {minimum: 3, maximum: 50}
+  validates :first_name, presence: true, length: {minimum: 1, maximum: 50}
+  validates :last_name, presence: true, length: {minimum: 1, maximum: 50}
 
   VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 500},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
-  validates :password, presence: true, length: {minimum:6}
+  validates :password, presence: true, length: {minimum:6}, allow_blank: true
 
   has_secure_password
 
@@ -26,14 +26,19 @@ class User < ApplicationRecord
       BCrypt::Password.create string, cost: cost
     end
 
+
     def new_token
       SecureRandom.urlsafe_base64
     end
   end
 
+  def current_user? user
+    user == self
+  end
+
   def remember
     self.remember_token = User.new_token
-    update_attribute :remember_digest, User.digest(remember_token)
+    update_attributes remember_digest: User.digest(remember_token)
   end
 
   def authenticated? remember_token

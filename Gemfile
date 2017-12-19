@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem "rails", "~> 5.1.4"
+gem "faker", "1.6.6"
 gem "mysql2", ">= 0.3.18", "< 0.5"
 gem "puma", "~> 3.7"
 gem "sass-rails", "~> 5.0"
@@ -17,6 +18,8 @@ gem "yaml_db"
 gem "bcrypt", "3.1.11"
 gem "bootstrap-sass", "3.3.6"
 gem "jquery-rails"
+gem "will_paginate", "3.1.0"
+gem "bootstrap-will_paginate", "0.0.10"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
