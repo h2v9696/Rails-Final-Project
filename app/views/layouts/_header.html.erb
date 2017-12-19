@@ -1,29 +1,72 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "sample app", "#", id: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", "/home" %></li>
-        <li><%= link_to "Help", help_path %></li>
-        <% if logged_in? %>
-          <li><%= link_to "Users", users_path %></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Profile", current_user %></li>
-              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to "Log out", logout_path, method: :delete %>
-              </li>
-            </ul>
-          </li>
-        <% else %>
-          <li><%= link_to "Log in", login_path %></li>
-        <% end %>
-      </ul>
-    </nav>
-  </div>
+<header class="header">
+    <div class="over-lay">
+        <div>
+            <!--logo-->
+            <div class="big-logo">
+                <a href="/">
+                    <%= image_tag("logo.png", alt: "Logo") %>
+                    <div id="logo-text"><h1 id="name">5 Birds</h1>
+                        <span>Shop</span>
+                        <sup>tm</sup></div>
+
+                </a>
+            </div>
+            <!--menu-->
+            <div id="menu">
+                <div class="menu-container">
+                  <div class="menu">
+                      <ul>
+                          <li><a href="/home">Home</a></li>
+                          <li><a href="#">Products</a></li>
+                          <% if logged_in? %>
+                            <li><%= link_to "Users", "#{}" %></li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Account <b class="caret"></b>
+                              </a>
+
+                                <li><%= link_to "Profile", current_user %></li>
+                                <li><%= link_to "Settings", "#" %></li>
+                                <li class="divider"></li>
+                                <li>
+                                  <%= link_to "Log out", logout_path, method: :delete %>
+                                </li>
+                            </li>
+                          <% else %>
+                            <li><%= link_to "Log in", login_path %></li>
+                          <% end %>
+
+                      </ul>
+                  </div>
+                </div>
+            </div>
+
+            <!--Search-box-->
+            <div class="search-box">
+                <i class="fa fa-search"
+                   aria-hidden="true" id="btn-search"></i>
+                <form method="get" action="/search">
+                  <div class="input-group" id="adv-search">
+                      <input type="text" id="search_text" name="key" placeholder="Search for products"/>
+                      <div class="input-group-btn">
+                          <div class="btn-group" role="group">
+                              <button type="submit" class="btn btn-primary" id="btn-not-show"></button>
+                          </div>
+                      </div>
+                  </div>
+                </form>
+            </div>
+
+            <!--order-check-->
+            <div class="order-box">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+
+            <div class="cart">
+                <p id="nothing">Nothing has been chosen</p>
+            </div>
+        </div>
+    </div>
 </header>
+<script>
+</script>

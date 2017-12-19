@@ -12,7 +12,12 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require handlebars
+//= require jquery.fullpage
+//= require prefixfree.min
+//= require owl.carousel.min
+//= require jquery-ui
+//= require jquery.easing.1.3
+//= require main
