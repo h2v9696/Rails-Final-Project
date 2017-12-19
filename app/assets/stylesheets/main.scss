@@ -216,10 +216,18 @@ h1,h2,h3,h4 {
 .header .order-box {
     right: 0;
     margin-top: -2px;
+    padding-top: 5px;
 
 }
 .header .order-box i {
     color: #ababab;
+}
+.header .order-box .shake {
+    transform: scale(1.5);
+    color: white;
+    transition-delay: 0.1s;
+    transition: all 0.5s;
+
 }
 
 .header .cart {
@@ -391,7 +399,7 @@ h1,h2,h3,h4 {
 
 @keyframes changeshadow {
     40% {
-    color: rgba(231, 76, 60, 0.7);
+    color: rgba(231, 76, 60, 0.7)
     }
 
     100% {
@@ -678,19 +686,6 @@ h1,h2,h3,h4 {
     clear: both;
     overflow: hidden;
 }
-/*}*/
-/*.section.new .over-lay {*/
-    /*height: 100%;*/
-    /*clear: both;*/
-/*}*/
-
-/*.section.hot .over-lay {*/
-
-    /*height: 100%;*/
-    /*clear: both;*/
-/*}*/
-
-
 .section .catalog {
     height: 40vh;
     text-align: center;
@@ -1140,7 +1135,7 @@ li:hover {
 .cart_content .cart_main .cart_order .summary_total .price_total, .price_text {
     padding: 20px 0px 20px;
 }
-.cart_content .cart_main .cart_order .summary_total .quick_buy_button {
+.cart_content .cart_main .cart_order .summary_total .payment {
     width: 100%;
     border: 1px solid #f37022;
     background-color: #f37022;
@@ -1149,7 +1144,9 @@ li:hover {
     font-weight: bold;
     color: rgb(255, 255, 255);
 }
-.cart_content .cart_main .cart_order .summary_total .quick_buy_button:hover {
+.cart_content .cart_main .cart_order .summary_total .payment:hover {
     background-color: rgb(255, 255, 255);
     color: #f37022;
 }
+
+.ui-helper-hidden-accessible { display:none; }

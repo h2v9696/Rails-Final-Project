@@ -11,15 +11,17 @@
  * It is generally better to create a new file per style scope.
  *
  *= require normalize
- *= require font-awesome.min
  *= require owl.carousel.min
  *= require owl.theme.default.min
  *= require jquery-ui.min
  *= require jquery-ui.theme.min
+ *= require animate
  *= require jquery.fullpage.min
  *= require megamenu
  *= require main
  *= require user
  *= require_self
  */
-
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
