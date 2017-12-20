@@ -1,0 +1,21 @@
+<% provide :title, "All products" %>
+<h1>All products</h1>
+
+<%= will_paginate %>
+
+<div class="table-responsive">
+  <table class="table table-condensed table-striped">
+    <thead>
+      <tr>
+        <th scope="row">Product ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render @products %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate %>
