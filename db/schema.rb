@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171219105739) do
+ActiveRecord::Schema.define(version: 20171221062146) do
 
   create_table "comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "user_id"
@@ -92,6 +92,9 @@ ActiveRecord::Schema.define(version: 20171219105739) do
     t.string "password_digest"
     t.string "remember_digest"
     t.boolean "is_admin"
+    t.string "activation_digest"
+    t.boolean "activated"
+    t.datetime "activated_at"
   end
 
 end
