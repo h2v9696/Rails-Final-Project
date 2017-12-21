@@ -19,8 +19,10 @@ vi:
     update: "Cập nhật mật khẩu"
     cant_empty: "không để rỗng"
   warning:
+    error: "Có lỗi xảy ra!"
     activation: "Tài khoản chưa được kích hoạt. Xin hãy kiểm tra email."
   success:
+    login: "Bạn đã đăng nhập!"
     activation: "Tài khoản đã kích hoạt!"
     update: "Đã cập nhật Profile!"
     delete: "Đã xóa tài khoản"

@@ -42,8 +42,10 @@ en:
     cant_empty: "can't be empty"
 
   warning:
+    error: "There was a error!"
     activation: "Account not activated. Check your email for the activation link."
   success:
+    login: "You're logged in!"
     activation: "Account activated!"
     update: "Profile Updated!"
     delete: "User deleted"
