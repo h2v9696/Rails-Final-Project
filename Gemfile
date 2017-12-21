@@ -23,6 +23,8 @@ gem "bootstrap-will_paginate", "0.0.10"
 gem "font-awesome-sass"
 gem "config"
 gem "omniauth-facebook"
+gem "cocoon"
+gem "jquery-ui-rails"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
