@@ -1,4 +1,6 @@
-$(document).on('turbolinks:load',function(){
+
+$(document).on('turbolinks:load', function () {
+    //slide
     $(".owl-carousel").owlCarousel({
         center: true,
         items: 2,
@@ -9,24 +11,36 @@ $(document).on('turbolinks:load',function(){
         autoplayHoverPause: true
     });
 
+
 // click item
     $('.item-over-lay').click(function (e) {
         var productId = $(this).attr('data-ProductID');
-        show_details(loadedData[productId]);
-    })
+        $.get("/product/" + productId, function (data) {
+            $('.modal-body').html(data);
+        }, "html");
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=2032953576972996';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        $('#dialog').modal("show");
+    });
 
 // show comments
     function show_comments(productId) {
-    $.ajax({
-        dataType: 'json',
-        type: 'GET',
-        url: '/comment/get',
-        data: {
-            productId: productId
-        }
-    }).done(function (response) {
-        $("#test").html(response['html'])
-    });
+        $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/comment/get',
+            data: {
+                productId: productId
+            }
+        }).done(function (response) {
+            $("#test").html(response['html'])
+        });
 
     }
 
@@ -69,25 +83,25 @@ $(document).on('turbolinks:load',function(){
 
     // show details
     function show_details(obj) {
-    var itemModalTemplate = Handlebars.compile($("#item-modal-template").html());
-    $("#item_modal_body").html(itemModalTemplate(obj));
-    $("#item_modal").modal("show");
-    show_comments(obj['ProductID']);
-    $(".input_qty").on('keyup keydown change', function (events) {
-        $('#' + obj['ProductID']).attr("data-Quantity", $(this).val());
-    });
+        var itemModalTemplate = Handlebars.compile($("#item-modal-template").html());
+        $("#item_modal_body").html(itemModalTemplate(obj));
+        $("#item_modal").modal("show");
+        show_comments(obj['ProductID']);
+        $(".input_qty").on('keyup keydown change', function (events) {
+            $('#' + obj['ProductID']).attr("data-Quantity", $(this).val());
+        });
 
-    $(".add_to_card_details").on('click', function (e) {
-        e.stopPropagation();
-        $(this).attr('data-Quantity', $('.input_qty').val());
-        addToCart(this);
-    });
-    $(".quick_buy_button_details").on('click', function (e) {
-        e.stopPropagation();
-        $(this).attr('data-Quantity', $('.input_qty').val());
-        addToCart(this);
-    });
-}
+        $(".add_to_card_details").on('click', function (e) {
+            e.stopPropagation();
+            $(this).attr('data-Quantity', $('.input_qty').val());
+            addToCart(this);
+        });
+        $(".quick_buy_button_details").on('click', function (e) {
+            e.stopPropagation();
+            $(this).attr('data-Quantity', $('.input_qty').val());
+            addToCart(this);
+        });
+    }
 
 //  search_ajax + animate
 //  $('#search_text').autocomplete({
@@ -101,21 +115,21 @@ $(document).on('turbolinks:load',function(){
 // });
     $("#adv-search").hide();
     $("#btn-search").click(function (event) {
-    $(this).toggleClass("active");
-    $("#adv-search").toggle("slide", {direction: "right"}, 250);
+        $(this).toggleClass("active");
+        $("#adv-search").toggle("slide", {direction: "right"}, 250);
     });
 
 
     // add to cart
     $(".add_to_card").on('click', function (e) {
-    e.stopPropagation();
-    addToCart(this);
+        e.stopPropagation();
+        addToCart(this);
     });
 
     // quick buy
     $(".quick_buy_button").on('click', function (e) {
-    e.stopPropagation();
-    addToCart(this);
+        e.stopPropagation();
+        addToCart(this);
     });
 
     //add to cart
@@ -131,7 +145,7 @@ $(document).on('turbolinks:load',function(){
             "image": $(clicked).attr('data-ProductImage'),
             "quantity": parseInt($(clicked).attr('data-Quantity')),
         };
-        if(parseInt($(clicked).attr('data-Quantity'))  <= 0) {
+        if(parseInt($(clicked).attr('data-Quantity')) <= 0) {
             alert("so luong phai lon hon 0 !");
         }
         else {
@@ -140,7 +154,7 @@ $(document).on('turbolinks:load',function(){
             $('.fa-shopping-cart').addClass('shake');
             setTimeout(function () {
                 $('.fa-shopping-cart').removeClass('shake');
-            },800);
+            }, 800);
 
             showcart();
         }
@@ -170,40 +184,39 @@ $(document).on('turbolinks:load',function(){
                 total_price += value['price'] * value['quantity'];
                 total += parseInt(value['quantity']);
                 var url = value['image'];
-                console.log(value['image']);
                 cart.append(
                     "<div class='card' " +"data-stt='"+index+"'>"+
-                    '<div class="thumbnail-img"' + 'style="background-image: url(' + url + ')"></div>' +
-                    '<div class="info" >' +
-                        "<p class='name'>"+value['name'] +"</p> "+
-                        '<p class="price">' + value['price'] + '</p>' +
-                        '<p class="quantity">' + value['quantity'] + '</p>' +
-                    '</div>' +
-                    "<div><i class='delete-btn fa fa-times-circle'>"+"</i></div>" +
+                        '<div class="thumbnail-img"' + 'style="background-image: url(' + url + ')"></div>' +
+                        '<div class="info" >' +
+                            "<p class='name'>"+value['name'] +"</p> "+
+                            '<p class="price">' + value['price'] + '</p>' +
+                            '<p class="quantity">' + value['quantity'] + '</p>' +
+                        '</div>' +
+                        "<div><i class='delete-btn fa fa-times-circle'>"+"</i></div>" +
                     "</div>"
                 );
 
                 cartPage.append(
-                '<tr class="card" data-stt="' + index + '">' +
-                    '<td>' +
-                    '<img src=' + url + '>' +
-                    '</td>' +
-                    '<td>' +
-                    "<h3 class='name'>" + value['name'] + "</h3>"+
-                    '</td>' +
-                    '<td>' +
-                    '<span class="price">' + value['price'] + '</span>' +
-                    '</td>' +
-                    '<td>' +
-                    '<input id="' + value['id'] + '" class="input_qty" name="qty" autofocus="autofocus" autocomplete="off" min="1" max="9999" value=' + value['quantity'] + ' type="number">' +
-                    '</td>' +
-                    '<td>' +
-                    '<i class="delete-btn fa fa-times-circle fa-2x">' + "</i>" +
-                    '</td>' +
-                    '<td>' +
-                    '<i class="edit-btn fa fa-pencil fa-2x" data-id="' + value['id'] + '"></i>' +
-                    '</td>' +
-                '</tr>'
+                    '<tr class="card" data-stt="' + index + '">' +
+                        '<td>' +
+                            '<img src=' + url + '>' +
+                        '</td>' +
+                        '<td>' +
+                            "<h3 class='name'>" + value['name'] + "</h3>" +
+                        '</td>' +
+                        '<td>' +
+                            '<span class="price">' + value['price'] + '</span>' +
+                        '</td>' +
+                        '<td>' +
+                            '<input id="' + value['id'] + '" class="input_qty" name="qty" autofocus="autofocus" autocomplete="off" min="1" max="9999" value=' + value['quantity'] + ' type="number">' +
+                        '</td>' +
+                        '<td>' +
+                            '<i class="delete-btn fa fa-times-circle fa-2x">' + "</i>" +
+                        '</td>' +
+                        '<td>' +
+                            '<i class="edit-btn fa fa-pencil fa-2x" data-id="' + value['id'] + '"></i>' +
+                        '</td>' +
+                    '</tr>'
                 );
             });
 
@@ -214,8 +227,8 @@ $(document).on('turbolinks:load',function(){
                 '</a></div>');
             $(".card .delete-btn").click(function () {
                 var attr = $(this).parent().parent().attr('data-stt');
-                currentcart.splice(attr,1);
-                sessionStorage.setItem('cart',JSON.stringify(currentcart));
+                currentcart.splice(attr, 1);
+                sessionStorage.setItem('cart', JSON.stringify(currentcart));
                 showcart();
                 // if (currentcart.length < 1) {
                 //     cart.html("");
@@ -227,13 +240,13 @@ $(document).on('turbolinks:load',function(){
                 var index = $(this).parent().parent().attr('data-stt');
                 var id = $(this).attr('data-id');
                 var qty = $("#" + id + ".input_qty").val();
-                if(qty <= 0) {
-                currentcart.splice(index,1);
+                if (qty <= 0) {
+                    currentcart.splice(index, 1);
                 } else {
-                currentcart[index]['quantity'] = qty;
+                    currentcart[index]['quantity'] = qty;
                 }
 
-                sessionStorage.setItem('cart',JSON.stringify(currentcart));
+                sessionStorage.setItem('cart', JSON.stringify(currentcart));
                 showcart();
             });
 
@@ -246,123 +259,125 @@ $(document).on('turbolinks:load',function(){
         $(".total_cart").text(total + ' sản phẩm');
     }
 
-showcart();
-$(".order-box .fa").click(function (event) {
-    $(".cart").slideToggle();
-});
+    showcart();
+    $(".order-box .fa").click(function (event) {
+        $(".cart").slideToggle();
+    });
 
-$(".payment").click(function (e){
-    
-});
+
+    $(".payment").click(function (e) {
+        // alert("Thanh toán thành công !");
+    });
 // Quotes about learning from goodreads -- http://www.goodreads.com/quotes/tag/learning
 
 
 // smooth scroll
-console.log('1');
-$(document).ready(function () {
-    'use strict';
-    // Select all links with hashes
-    $('a[href*="#"]')
-    // Remove links that don't actually link to anything
-        .not('[href="#"]')
-        .not('[href="#0"]')
-        .click(function (event) {
-            // On-page links
-            if (
-                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
-                &&
-                location.hostname == this.hostname
-            ) {
-                // Figure out element to scroll to
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                // Does a scroll target exist?
-                if (target.length) {
-                    // Only prevent default if animation is actually gonna happen
-                    event.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000, function () {
-                        // Callback after animation
-                        // Must change focus!
-                        var $target = $(target);
-                        $target.focus();
-                        if ($target.is(":focus")) { // Checking if the target was focused
-                            return false;
-                        } else {
-                            $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
-                            $target.focus(); // Set focus again
-                        }
-                        ;
-                    });
+    console.log('1');
+    $(document).ready(function () {
+        'use strict';
+        // Select all links with hashes
+        $('a[href*="#"]')
+        // Remove links that don't actually link to anything
+            .not('[href="#"]')
+            .not('[href="#0"]')
+            .click(function (event) {
+                // On-page links
+                if (
+                    location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+                    &&
+                    location.hostname == this.hostname
+                ) {
+                    // Figure out element to scroll to
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    // Does a scroll target exist?
+                    if (target.length) {
+                        // Only prevent default if animation is actually gonna happen
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000, function () {
+                            // Callback after animation
+                            // Must change focus!
+                            var $target = $(target);
+                            $target.focus();
+                            if ($target.is(":focus")) { // Checking if the target was focused
+                                return false;
+                            } else {
+                                $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                                $target.focus(); // Set focus again
+                            }
+                            ;
+                        });
+                    }
                 }
-            }
-        });
-});
+            });
+    });
 
 
 // full Page
-var gradient = [
+    var gradient = [
         "#dfdfdf",
         "linear-gradient(135deg, rgba(255,174,39,1) 0%,rgba(222,73,109,1) 100%",
         "linear-gradient(135deg, rgba(31, 162, 255, 1) 0%,rgba(18, 216, 250, 1) 50%,rgba(166, 255, 203, 1) 100%)",
         "linear-gradient(135deg, rgba(171,73,222,1) 0%,rgba(73,84,222,1) 100%)",
         "linear-gradient(135deg, rgba(222,73,109,1) 0%,rgba(171,73,222,1) 100%)"
     ];
-   $('#fullpage').fullpage({
-    anchor: ['section1', 'section2', 'section3', 'section4','section5'],
-    onLeave: function (index, nextIndex, direction) {
-        if (index === 1) {
-            $('.section.best-sell').css('background', gradient[1])
-            $('#gradient').css('z-index', '-1')
-            $('.slideshow').css('z-index', -100)
-        }
-        if (index === 2) {
-            if (direction === 'up') {
-                $('#gradient').css('z-index', '-200')
-                $('#gradient').css('background', gradient[0])
+    $('#fullpage').fullpage({
+        anchor: ['section1', 'section2', 'section3', 'section4', 'section5'],
+        onLeave: function (index, nextIndex, direction) {
+            if (index === 1) {
+                $('.section.best-sell').css('background', gradient[1])
+                $('#gradient').css('z-index', '-1')
+                $('.slideshow').css('z-index', -100)
             }
-            if (direction === 'down') {
-                $('.section.best-sell').css('background', 'none')
-                $('#gradient').css('background',gradient[2])
+            if (index === 2) {
+                if (direction === 'up') {
+                    $('#gradient').css('z-index', '-200')
+                    $('#gradient').css('background', gradient[0])
+                }
+                if (direction === 'down') {
+                    $('.section.best-sell').css('background', 'none')
+                    $('#gradient').css('background', gradient[2])
+                }
             }
-        }
-        if (index === 3) {
-            if (direction === 'up') {
-                $('#gradient').css('background', gradient[1])
+            if (index === 3) {
+                if (direction === 'up') {
+                    $('#gradient').css('background', gradient[1])
+                }
+                if (direction === 'down') {
+                    $('#gradient').css('background', gradient[3])
+                }
             }
-            if (direction === 'down') {
+            if (index === 4) {
+                if (direction === 'up') {
+                    $('#gradient').css('background', gradient[2])
+                }
+                if (direction === 'down') {
+                    $('#gradient').css('background', gradient[4])
+                }
+            }
+            if (index === 5) {
                 $('#gradient').css('background', gradient[3])
             }
-        }
-        if (index === 4) {
-            if (direction === 'up') {
-                $('#gradient').css('background', gradient[2])
-            }
-            if (direction === 'down') {
-                $('#gradient').css('background', gradient[4])
-            }
-        }
-        if (index === 5) {
-            $('#gradient').css('background', gradient[3])
-        }
-    },
+        },
 
-    afterLoad: function (anchorLink, index) {
-        if (index === 1) {
-            // $('.section.best-sell').css('background', 'none')
-            $('.slideshow').css('z-index', 10)
-        }
-        if (index === 2) {
-            $('#gradient').css('background', 'linear-gradient(135deg, rgba(255,174,39,1) 0%,rgba(222,73,109,1) 100%')
-            $('.section.best-sell').css('background', 'linear-gradient(135deg, rgba(255,174,39,1) 0%,rgba(222,73,109,1) 100%')
+        afterLoad: function (anchorLink, index) {
+            if (index === 1) {
+                // $('.section.best-sell').css('background', 'none')
+                $('.slideshow').css('z-index', 10)
+            }
+            if (index === 2) {
+                $('#gradient').css('background', 'linear-gradient(135deg, rgba(255,174,39,1) 0%,rgba(222,73,109,1) 100%')
+                $('.section.best-sell').css('background', 'linear-gradient(135deg, rgba(255,174,39,1) 0%,rgba(222,73,109,1) 100%')
 
+            }
         }
-    }
-});
+    });
 
 });
 
+console.log('4');
 $("#prospects_form").submit(function (e) {
     e.preventDefault();
 });
