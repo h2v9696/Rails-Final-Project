@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
 
     get "/products/autocomplete", to: "products#autocomplete"
-
     resources :users
     resources :products
     resources :account_activations, only: :edit

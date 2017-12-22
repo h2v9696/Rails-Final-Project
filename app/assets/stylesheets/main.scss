@@ -1150,3 +1150,12 @@ li:hover {
 }
 
 .ui-helper-hidden-accessible { display:none; }
+
+// Autocomplete css
+.ui-autocomplete {
+    max-height: 400px;
+    width: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
