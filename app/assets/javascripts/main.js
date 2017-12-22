@@ -106,7 +106,7 @@ $(document).on('turbolinks:load',function(){
     });
 
 
-    // art to cart
+    // add to cart
     $(".add_to_card").on('click', function (e) {
     e.stopPropagation();
     addToCart(this);

@@ -1,1 +1,193 @@
-<div></div>
+<% provide :title, "Checkout" %>
+<div class="checkout-main">
+    <div class="checkout-box">
+        <div class="shipping_form">
+            <div class="checkout-box _heading">
+                <h3 class="checkout-box _title">
+                    Địa chỉ giao hàng của quý khách                            </h3>
+
+                <a class="checkout-box _link-speedy-login" href="/login">Đăng nhập để đặt hàng</a>
+            </div>
+
+            <div class="checkout-box _content">
+
+                <form id="delivery_information_form" action="/checkout/deliveryinformation" method="post">
+
+                    <div class="checkout-fields -shipping">
+
+                        <div class="checkout-field _row" data-form="field" data-spm-anchor-id="a2o4n.checkout.0.i0.176c83b2r9V27i">
+                            <div class="checkout-field _main">
+                                <div class="checkout-field _title">
+                                    <label class="checkout-field _label">
+                                        Email                            </label>
+                                </div>
+                                <div class="checkout-field _input-wrapper">
+                                    <input class="checkout-field _input-text" 
+                                            placeholder="Xin vui lòng nhập email:" 
+                                            data-field="input" 
+                                            name="ThreeStepShippingAddressForm[email]" 
+                                            id="ThreeStepShippingAddressForm_email" 
+                                            type="text"
+                                            required>
+                                </div>
+                            </div>
+                        </div>
+                            
+                        <div class="checkout-field _row" data-form="field">
+                            <div class="checkout-field _main">
+                                <div class="checkout-field _title">
+                                    <label class="checkout-field _label">
+                                        Tên                        </label>
+                                </div>
+                                <div class="checkout-field _input-wrapper">
+                                    <input class="checkout-field _input-text" 
+                                            maxlength="50" 
+                                            placeholder="Họ &amp; tên" 
+                                            data-field="input" 
+                                            name="ThreeStepShippingAddressForm[first_name]" 
+                                            id="ThreeStepShippingAddressForm_first_name" 
+                                            type="text"
+                                            required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="checkout-field _row" data-form="field">
+                            <div class="checkout-field _main">
+                                <div class="checkout-field _title">
+                                    <label class="checkout-field _label">
+                                        Tỉnh/Thành phố                        </label>
+                                </div>
+                                <div class="checkout-field _input-wrapper">
+                                    <select class="checkout-field _select location shipping" 
+                                            rel="location_0" 
+                                            data-field="input" 
+                                            name="ThreeStepShippingAddressForm[location][0]" 
+                                            id="ThreeStepShippingAddressForm_location_0"
+                                            required>
+                                        <option value="271">Hồ Chí Minh</option>
+                                        <option value="232">Hà Nội</option>
+                                        <option value="260">Đà Nẵng</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                                    
+                        <div class="checkout-field _row" data-form="field">
+                            <div class="checkout-field _main">
+                                <div class="checkout-field _title">
+                                    <label for="" class="checkout-field _label">
+                                        Địa chỉ nhận hàng (tầng, số nhà, đường)                        </label>
+                                </div>
+                                <div class="checkout-field _input-wrapper">
+                                    <textarea class="checkout-field _input-textarea" 
+                                                rows="3" 
+                                                maxlength="255" 
+                                                placeholder="Địa chỉ nhận hàng (tầng, số nhà, đường, quận)" 
+                                                data-field="input" 
+                                                data-address="vn" 
+                                                name="ThreeStepShippingAddressForm[address1]" 
+                                                id="ThreeStepShippingAddressForm_address1"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="checkout-field _row" data-form="field">
+                            <div class="checkout-field _main">
+                                <div class="checkout-field _title">
+                                    <label class="checkout-field _label">
+                                        Điện thoại di động                        </label>
+                                </div>
+                                <div class="checkout-field _input-wrapper">
+                                    <input class="checkout-field _input-phone -no-prefix" 
+                                            maxlength="20" 
+                                            placeholder="Số điện thoại" 
+                                            data-field="input" 
+                                            name="ThreeStepShippingAddressForm[phone]" 
+                                            id="ThreeStepShippingAddressForm_phone" 
+                                            type="text"
+                                            required>                    </div>
+                            </div>
+                        </div>
+
+                        <div class="ch-box payment_form        " data-payment="form">
+                            <h3 class="ch-main-title" data-payment="title">
+                                Chọn phương thức thanh toán        </h3>
+                            <div id="tabs-container" class="payment_method_select">
+                                <div id="tabs">
+                                    <ul class="payment-options-list cf" data-payment-methods="tabs-menu">
+                        
+                                        <li>
+                                            <div class="tab_pseudo-elems">
+                                                <span>Thanh toán khi nhận hàng</span>
+                                            </div>
+                                            <div class="radio-wrap">
+                                                <input type="radio">
+                                                <input type="radio" checked="">
+                                            </div>
+                                        </li>
+                        
+                                        <li>
+                                            <div class="tab_pseudo-elems">
+                                                <span>Thẻ ATM <br> nội địa</span>
+                                            </div>
+                                            <div class="radio-wrap">
+                                                <input type="radio">
+                                                <input type="radio" checked="">
+                                            </div>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+
+                                <div class="cf tab-wrapper"> 
+                                    <div id="payments-tabs-wrapper">
+                                            <div id="tabs-unselected" class="tab hidden" style="display: none;">
+                                                <div class="payment_notavail_page">
+                                                    <div class="payment_wrap">
+                                                        <div class="notavail_announcement">
+                                                            Xin vui lòng chọn một phương thức thanh toán        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="space_35"></div>
+                                            </div>
+                                    </div>
+                                </div>
+                                        
+                            </div>        
+                        </div>
+                            
+                    </div>
+                    <div class="checkout-field _submit-row -final-row" data-form="submit-wrapper" data-submit="new-address">
+                        <input type="hidden" name="send" value="1">
+                        <input type="submit" class="checkout-field _button" value="Đặt hàng »" data-button="shipping">
+                    </div>
+
+                </form>                        
+            </div>                                   
+        </div>            
+    </div>
+                                
+    <div class="cart_order">
+        <div class="cart_summary">
+            <table class="summary_total">
+            <thead>
+                <tr>
+                    <td colspan="2" class="summary_header">Thông tin đơn hàng</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <div class="cart">
+                    </div>
+                </tr>
+                <tr>
+                    <td class="price_total">Tổng tiền: </td>
+                    <td class="price_text"></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>

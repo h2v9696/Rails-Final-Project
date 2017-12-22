@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get "/auth/:provider/callback", to: "sessions#create"
     get "/auth/failure", to: "sessions#failure"
     get "/cart", to: "cart#cart"
-    get "/cart/payment", to: "cart#payment"
+    get "/cart/checkout", to: "cart#checkout"
 
     resources :users
     resources :products

@@ -2,6 +2,6 @@ class CartController < ApplicationController
     def cart
     end
 
-    def payment
+    def checkout
     end
 end
