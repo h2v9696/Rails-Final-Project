@@ -1,4 +1,12 @@
 class User < ApplicationRecord
+  has_many :comments, class_name: "Comment", foreign_key: "user_id",
+    dependent: :destroy
+  has_many :commented_product, through: :comments, source: :product
+  has_many :orders, foreign_key: "user_id", dependent: :destroy
+  has_many :user_details, class_name: "UserDetail", dependent: :destroy, inverse_of: :user
+  accepts_nested_attributes_for :user_details,
+    reject_if: ->(attrs) { attrs["country"].blank? || attrs["city"].blank? || attrs["phone"].blank? || attrs["address"].blank? }
+
   attr_accessor :remember_token, :activation_token, :reset_token
 
   before_save :downcase_email
