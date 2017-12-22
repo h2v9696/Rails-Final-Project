@@ -12,8 +12,27 @@ $(document).on('turbolinks:load',function(){
 // click item
     $('.item-over-lay').click(function (e) {
         var productId = $(this).attr('data-ProductID');
-        show_details(loadedData[productId]);
-    })
+        console.log(productId);
+        // $.ajax({
+        //     type: 'GET',
+        //     url: 'product/' + productId})
+        //     .done (function(data) {
+        //         console.log('done');
+        //         $('.modal-body').html(data['html']);
+        //         console.log(data['html']);
+        //         $('#dialog').modal("show");
+        //
+        //     })
+        //     .fail (function() {
+        //         alert("Ajax error!")
+        //     })
+        //
+        // })
+        $.get("/product/" + productId, function (data) {
+            $('.modal-body').html(data);
+        }, "html");
+        $('#dialog').modal("show");
+    });
 
 // show comments
     function show_comments(productId) {
