@@ -7,4 +7,26 @@ class ProductsController < ApplicationController
     def show
         @product = Product.find_by id: params[:id]
     end
+
+    # auto complete
+    def autocomplete
+        if params[:term]
+            @products = Product.search(params[:term]);
+        else
+            puts "1"
+            @products = Product.all
+        end
+
+        @result = Array.new
+        @products.each do |item|
+            puts item.name
+            hash = { "value" => item.name}
+            @result << hash
+        end
+
+        respond_to do |format|  
+            format.html # index.html.erb  
+            format.json { render :json => @result.to_json }
+        end
+    end
 end

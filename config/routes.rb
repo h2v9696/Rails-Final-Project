@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
 
+    get "/products/autocomplete", to: "products#autocomplete"
+
     resources :users
     resources :products
     resources :account_activations, only: :edit
