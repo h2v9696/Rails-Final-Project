@@ -5,8 +5,8 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
-
+/.bundle/
+/.idea/
 # Ignore the default SQLite database.
 /db/*.mysql2
 /db/*.mysql2-journal

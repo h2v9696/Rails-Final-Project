@@ -13,8 +13,23 @@
   <%= f.label :password %>
   <%= f.password_field :password, class: "form-control" %>
 
-  <%= f.label :password_confirmation, "Confirmation" %>
+  <%= f.label :password_confirmation, t("confirmation") %>
   <%= f.password_field :password_confirmation, class: "form-control" %>
+  <div>
+    <p><strong>More details:</strong></p>
 
+    <div id="details">
+      <%= f.fields_for :user_details do |detail| %>
+        <%= render 'details', f: detail %>
+      <% end %>
+
+      <div class="links">
+        <%= link_to_add_association 'add detail', f, :user_details %>
+      </div>
+
+      <p class="count">Total: <span><%= @user.user_details.count %></span></p>
+    </div>
+    <br>
+  </div>
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
