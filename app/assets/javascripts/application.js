@@ -13,8 +13,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
-//= require handlebars
 //= require jquery.fullpage
 //= require prefixfree.min
 //= require owl.carousel.min

@@ -1,5 +1,13 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token
+  has_many :comments, class_name: "Comment", foreign_key: "user_id",
+    dependent: :destroy
+  has_many :commented_product, through: :comments, source: :product
+  has_many :orders, foreign_key: "user_id", dependent: :destroy
+  has_many :user_details, class_name: "UserDetail", dependent: :destroy, inverse_of: :user
+  accepts_nested_attributes_for :user_details,
+    reject_if: ->(attrs) { attrs["country"].blank? || attrs["city"].blank? || attrs["phone"].blank? || attrs["address"].blank? }
+
+  attr_accessor :remember_token, :activation_token, :reset_token
 
   before_save :downcase_email
   before_create :create_activation_digest
@@ -8,7 +16,7 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true, length: {minimum: 1, maximum: 50}
   validates :last_name, presence: true, length: {minimum: 1, maximum: 50}
-  
+
   validates :email, presence: true, length: {maximum: 255},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
   validates :password, presence: true, length: {minimum:6}, allow_blank: true
@@ -24,6 +32,17 @@ class User < ApplicationRecord
 
     def new_token
       SecureRandom.urlsafe_base64
+    end
+
+    def from_omniauth auth_hash
+      user = find_or_create_by uid: auth_hash["uid"], provider: auth_hash["provider"]
+      user.first_name = auth_hash["info"]["first_name"]
+      user.last_name = auth_hash["info"]["last_name"]
+      user.email = auth_hash["info"]["email"]
+      user.password = "123456"
+      user.activate
+      user.save!
+      user
     end
   end
 
@@ -53,6 +72,20 @@ class User < ApplicationRecord
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end
+
+  def create_reset_digest
+     self.reset_token = User.new_token
+     update_attributes reset_digest: User.digest(reset_token),
+       reset_sent_at: Time.zone.now
+   end
+
+   def send_password_reset_email
+     UserMailer.password_reset(self).deliver_now
+   end
+
+   def password_reset_expired?
+     reset_sent_at < Settings.time_reset.hours.ago
+   end
 
   private
 
