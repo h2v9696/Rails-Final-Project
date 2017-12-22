@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
     get "/auth/:provider/callback", to: "sessions#create"
     get "/auth/failure", to: "sessions#failure"
+    get "/cart", to: "cart#cart"
+    get "/cart/payment", to: "cart#payment"
 
     resources :users
     resources :products
