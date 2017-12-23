@@ -25,6 +25,7 @@ gem "config"
 gem "omniauth-facebook"
 gem "cocoon"
 gem "jquery-ui-rails"
+gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
