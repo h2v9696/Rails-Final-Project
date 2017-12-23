@@ -1,8 +1,8 @@
 <%= form_for @user do |f| %>
-  <%= render "shared/error_messages" %>
+  <%= render "shared/error_messages", object: @user %>
 
   <%= f.label :first_name %>
-  <%= f.text_field :first_name, class: "form-control" %>
+  <%= f.text_field :first_name, class: "form-control", value: "abc" %>
 
   <%= f.label :last_name %>
   <%= f.text_field :last_name, class: "form-control" %>
@@ -20,7 +20,7 @@
 
     <div id="details">
       <%= f.fields_for :user_details do |detail| %>
-        <%= render 'details', f: detail %>
+        <%= render 'user_detail_fields', f: detail %>
       <% end %>
 
       <div class="links">

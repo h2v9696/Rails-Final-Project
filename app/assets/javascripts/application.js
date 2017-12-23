@@ -21,3 +21,6 @@
 //= require jquery-ui
 //= require jquery.easing.1.3
 //= require main
+//= require jquery-ui/effects/effect-highlight
+//= require cocoon
+//= require global
