@@ -4,7 +4,7 @@
     <a href="index.php">
       <h3>
         Sản phẩm uy tín từ
-        <%= image_tag("logo.png", alt: "Logo") %>
+        <%= cl_image_tag("logo.png", alt: "Logo") %>
         <span id="name">5 Birds</span>
         <span>Shop</span>
         <sup>tm</sup>
@@ -77,5 +77,5 @@
     <div id="test"></div>
   </div>
   <%= render "layouts/facebook_comment" %>
-  <div class="fb-comments" data-href= <%= request.original_url %> data-numposts="5"></div>
+  <div as="FB" class="fb-comments" data-href= <%= request.original_url %> data-numposts="5"></div>
 </div>
