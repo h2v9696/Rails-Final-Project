@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20171222174731) do
     t.integer "user_id", null: false
   end
 
-  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "email", limit: 500
     t.string "first_name", limit: 50
     t.string "last_name", limit: 50

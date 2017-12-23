@@ -1,5 +1,5 @@
-
-$(document).on('turbolinks:load', function () {
+var ready;
+ready = function () {
     //slide
     $(".owl-carousel").owlCarousel({
         center: true,
@@ -11,38 +11,45 @@ $(document).on('turbolinks:load', function () {
         autoplayHoverPause: true
     });
 
-
-// click item
+    // click item
     $('.item-over-lay').click(function (e) {
         var productId = $(this).attr('data-ProductID');
         $.get("/product/" + productId, function (data) {
+            $('.cart').slideUp();
             $('.modal-body').html(data);
+            showcart();
+            $(".input_qty").on('keyup keydown change', function (events) {
+                $('#' + obj['ProductID']).attr("data-Quantity", $(this).val());
+            });
+
+            $(".add_to_card_details").on('click', function (e) {
+                e.stopPropagation();
+                $(this).attr('data-Quantity', $('.input_qty').val());
+                addToCart(this);
+            });
+            $(".quick_buy_button_details").on('click', function (e) {
+                e.stopPropagation();
+                $(this).attr('data-Quantity', $('.input_qty').val());
+                addToCart(this);
+            });
+            $('.order-box.inModal').on('click',function (e) {
+                e.stopPropagation();
+                $(".cart.inModal").animate({height:'toggle', opacity: 'toggle'},'slow');
+            });
+            $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index_gradient])
+            $('.prod_modal .image .add_to_card_details').css('background', gradient[index_gradient+1])
+            $('#dialog-details').modal("show");
+
         }, "html");
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=2032953576972996';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+
+    });
+    /// login modal
+    $('#login').click(function (e){
+        $.get("/login",function (data) {
+            $('.modal-body').html(data);
+        })
         $('#dialog').modal("show");
     });
-
-// show comments
-    function show_comments(productId) {
-        $.ajax({
-            dataType: 'json',
-            type: 'GET',
-            url: '/comment/get',
-            data: {
-                productId: productId
-            }
-        }).done(function (response) {
-            $("#test").html(response['html'])
-        });
-
-    }
 
     $('#order, #manufactuer, #category').change(function () {
         var order = document.getElementById('order').value;
@@ -81,27 +88,6 @@ $(document).on('turbolinks:load', function () {
         });
     });
 
-    // show details
-    function show_details(obj) {
-        var itemModalTemplate = Handlebars.compile($("#item-modal-template").html());
-        $("#item_modal_body").html(itemModalTemplate(obj));
-        $("#item_modal").modal("show");
-        show_comments(obj['ProductID']);
-        $(".input_qty").on('keyup keydown change', function (events) {
-            $('#' + obj['ProductID']).attr("data-Quantity", $(this).val());
-        });
-
-        $(".add_to_card_details").on('click', function (e) {
-            e.stopPropagation();
-            $(this).attr('data-Quantity', $('.input_qty').val());
-            addToCart(this);
-        });
-        $(".quick_buy_button_details").on('click', function (e) {
-            e.stopPropagation();
-            $(this).attr('data-Quantity', $('.input_qty').val());
-            addToCart(this);
-        });
-    }
 
 //  search_ajax + animate
 //  $('#search_text').autocomplete({
@@ -275,7 +261,7 @@ $(document).on('turbolinks:load', function () {
         } else {
             cartPage.append("<tr><td colspan='5'><p align='center' style='font-size: 20px; margin-top: 25px ;'>Nothing has been chosen<p/></td></tr>");
             $(".payment").css("display", "none");
-            cart.append('<p id="nothing"> Nothing has been chosen <p/>');
+            cart.append('<p class="nothing"> Nothing has been chosen <p/>');
         }
         $(".price_text").text(total_price + " $");
         $(".total_cart").text(total + ' sản phẩm');
@@ -283,7 +269,7 @@ $(document).on('turbolinks:load', function () {
 
     showcart();
     $(".order-box .fa").click(function (event) {
-        $(".cart").slideToggle();
+        $(".cart").animate({height:'toggle', opacity: 'toggle'},'slow');
     });
 
 
@@ -294,7 +280,6 @@ $(document).on('turbolinks:load', function () {
 
 
 // smooth scroll
-    console.log('1');
     $(document).ready(function () {
         'use strict';
         // Select all links with hashes
@@ -338,6 +323,7 @@ $(document).on('turbolinks:load', function () {
 
 
 // full Page
+    var index_gradient = 2;
     var gradient = [
         "#dfdfdf",
         "linear-gradient(135deg, rgba(255,174,39,1) 0%,rgba(222,73,109,1) 100%",
@@ -352,35 +338,59 @@ $(document).on('turbolinks:load', function () {
                 $('.section.best-sell').css('background', gradient[1])
                 $('#gradient').css('z-index', '-1')
                 $('.slideshow').css('z-index', -100)
+                $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
+                $('.prod_modal .image .add_to_card_details').css('background', gradient[index+1])
+                index_gradient = index
             }
             if (index === 2) {
                 if (direction === 'up') {
                     $('#gradient').css('z-index', '-200')
                     $('#gradient').css('background', gradient[0])
+                    $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
+                    $('.prod_modal .image .add_to_card_details').css('background', gradient[index-1])
+                    index_gradient = index
                 }
                 if (direction === 'down') {
                     $('.section.best-sell').css('background', 'none')
                     $('#gradient').css('background', gradient[2])
+                    $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
+                    $('.prod_modal .image .add_to_card_details').css('background', gradient[index+1])
+                    index_gradient = index
                 }
             }
             if (index === 3) {
                 if (direction === 'up') {
                     $('#gradient').css('background', gradient[1])
+                    $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
+                    $('.prod_modal .image .add_to_card_details').css('background', gradient[index-2])
+                    index_gradient = index
                 }
                 if (direction === 'down') {
                     $('#gradient').css('background', gradient[3])
+                    $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
+                    $('.prod_modal .image .add_to_card_details').css('background', gradient[index+1])
+                    index_gradient = index
                 }
             }
             if (index === 4) {
                 if (direction === 'up') {
                     $('#gradient').css('background', gradient[2])
+                    $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
+                    $('.prod_modal .image .add_to_card_details').css('background', gradient[index-2])
+                    index_gradient = index
                 }
                 if (direction === 'down') {
                     $('#gradient').css('background', gradient[4])
+                    $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
+                    $('.prod_modal .image .add_to_card_details').css('background', gradient[index+1])
+                    index_gradient = index
                 }
             }
             if (index === 5) {
                 $('#gradient').css('background', gradient[3])
+                $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index-1])
+                $('.prod_modal .image .add_to_card_details').css('background', gradient[index-2])
+                index_gradient = index
             }
         },
 
@@ -396,10 +406,9 @@ $(document).on('turbolinks:load', function () {
             }
         }
     });
-
-});
-
-console.log('4');
+}
+$(document).ready(ready);
+$(document).on('page:load',ready);
 $("#prospects_form").submit(function (e) {
     e.preventDefault();
 });
