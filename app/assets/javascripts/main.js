@@ -48,7 +48,7 @@ ready = function () {
         $.get("/login",function (data) {
             $('.modal-body').html(data);
         })
-        $('#dialog').modal("show");
+        $('#dialog-login').modal("show");
     });
 
     $('#order, #manufactuer, #category').change(function () {
