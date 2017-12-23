@@ -120,7 +120,7 @@ $(document).on('turbolinks:load', function () {
     });
 
 
-    // art to cart
+    // add to cart
     $(".add_to_card").on('click', function (e) {
         e.stopPropagation();
         addToCart(this);
@@ -132,6 +132,7 @@ $(document).on('turbolinks:load', function () {
         addToCart(this);
     });
 
+    //add to cart
     function addToCart(clicked) {
         var currentcart = [];
         var item;
@@ -144,7 +145,7 @@ $(document).on('turbolinks:load', function () {
             "image": $(clicked).attr('data-ProductImage'),
             "quantity": parseInt($(clicked).attr('data-Quantity')),
         };
-        if (parseInt($(clicked).attr('data-Quantity')) <= 0) {
+        if(parseInt($(clicked).attr('data-Quantity')) <= 0) {
             alert("so luong phai lon hon 0 !");
         }
         else {
@@ -157,7 +158,6 @@ $(document).on('turbolinks:load', function () {
 
             showcart();
         }
-
     }
 
     function checkExist(Array, item) {
@@ -179,43 +179,43 @@ $(document).on('turbolinks:load', function () {
         var cartPage = $(".body_table");
         cart.html("");
         cartPage.html("");
-        if (currentcart !== null && currentcart.length > 0) {
-            $.each(currentcart, function (index, value) {
+        if(currentcart !== null && currentcart.length > 0 ) {
+            $.each(currentcart,function (index,value) {
                 total_price += value['price'] * value['quantity'];
                 total += parseInt(value['quantity']);
-                var url = "img/products/" + value['image'];
+                var url = value['image'];
                 cart.append(
-                    "<div class='card' " + "data-stt='" + index + "'>" +
-                    '<div class="thumbnail-img"' + 'style="background-image: url(' + url + ')"></div>' +
-                    '<div class="info" >' +
-                    "<p class='name'>" + value['name'] + "</p> " +
-                    '<p class="price">' + value['price'] + '</p>' +
-                    '<p class="quantity">' + value['quantity'] + '</p>' +
-                    '</div>' +
-                    "<div><i class='delete-btn fa fa-times-circle'>" + "</i></div>" +
+                    "<div class='card' " +"data-stt='"+index+"'>"+
+                        '<div class="thumbnail-img"' + 'style="background-image: url(' + url + ')"></div>' +
+                        '<div class="info" >' +
+                            "<p class='name'>"+value['name'] +"</p> "+
+                            '<p class="price">' + value['price'] + '</p>' +
+                            '<p class="quantity">' + value['quantity'] + '</p>' +
+                        '</div>' +
+                        "<div><i class='delete-btn fa fa-times-circle'>"+"</i></div>" +
                     "</div>"
                 );
 
                 cartPage.append(
                     '<tr class="card" data-stt="' + index + '">' +
-                    '<td>' +
-                    '<img src=' + url + '>' +
-                    '</td>' +
-                    '<td>' +
-                    "<h3 class='name'>" + value['name'] + "</h3>" +
-                    '</td>' +
-                    '<td>' +
-                    '<span class="price">' + value['price'] + '</span>' +
-                    '</td>' +
-                    '<td>' +
-                    '<input id="' + value['id'] + '" class="input_qty" name="qty" autofocus="autofocus" autocomplete="off" min="1" max="9999" value=' + value['quantity'] + ' type="number">' +
-                    '</td>' +
-                    '<td>' +
-                    '<i class="delete-btn fa fa-times-circle fa-2x">' + "</i>" +
-                    '</td>' +
-                    '<td>' +
-                    '<i class="edit-btn fa fa-pencil fa-2x" data-id="' + value['id'] + '"></i>' +
-                    '</td>' +
+                        '<td>' +
+                            '<img src=' + url + '>' +
+                        '</td>' +
+                        '<td>' +
+                            "<h3 class='name'>" + value['name'] + "</h3>" +
+                        '</td>' +
+                        '<td>' +
+                            '<span class="price">' + value['price'] + '</span>' +
+                        '</td>' +
+                        '<td>' +
+                            '<input id="' + value['id'] + '" class="input_qty" name="qty" autofocus="autofocus" autocomplete="off" min="1" max="9999" value=' + value['quantity'] + ' type="number">' +
+                        '</td>' +
+                        '<td>' +
+                            '<i class="delete-btn fa fa-times-circle fa-2x">' + "</i>" +
+                        '</td>' +
+                        '<td>' +
+                            '<i class="edit-btn fa fa-pencil fa-2x" data-id="' + value['id'] + '"></i>' +
+                        '</td>' +
                     '</tr>'
                 );
             });
@@ -264,8 +264,9 @@ $(document).on('turbolinks:load', function () {
         $(".cart").slideToggle();
     });
 
+
     $(".payment").click(function (e) {
-        alert("Thanh toán thành công !");
+        // alert("Thanh toán thành công !");
     });
 // Quotes about learning from goodreads -- http://www.goodreads.com/quotes/tag/learning
 
@@ -375,7 +376,6 @@ $(document).on('turbolinks:load', function () {
     });
 
 });
-
 
 console.log('4');
 $("#prospects_form").submit(function (e) {
