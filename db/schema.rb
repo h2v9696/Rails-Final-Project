@@ -77,6 +77,14 @@ ActiveRecord::Schema.define(version: 20171221170438) do
     t.index ["category_id"], name: "index2"
   end
 
+  create_table "user_details", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "country", null: false
+    t.string "city", null: false
+    t.string "address", null: false
+    t.string "phone", null: false
+    t.integer "user_id", null: false
+  end
+
   create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "email", limit: 500
     t.string "first_name", limit: 50
