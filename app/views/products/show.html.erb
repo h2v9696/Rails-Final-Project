@@ -2,7 +2,7 @@
   <div class="big-logo">
     <a href="/">
       <h3>
-        <%= image_tag("logo.png", alt: "Logo") %>
+        <%= cl_image_tag("logo.png", alt: "Logo") %>
         <span id="name">5 Birds</span>
         <span>Shop</span>
         <sup>tm</sup>
@@ -74,7 +74,7 @@
   </div>
   <div class="col facebook">
     <%= render "layouts/facebook_comment" %>
-    <div class="fb-comments" data-href=<%= request.original_url %> data-numposts="5" data-no-turbolink="true"></div>
+    <div as="FB" class="fb-comments" data-href= <%= request.original_url %> data-numposts="5"></div>
   </div>
 </div>
 <script>
@@ -87,3 +87,4 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
+

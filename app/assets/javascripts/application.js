@@ -13,6 +13,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery
+//= require observejs
+//= require fb
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery.fullpage
@@ -21,6 +23,8 @@
 //= require jquery-ui
 //= require jquery.easing.1.3
 //= require main
+//= require jquery-ui/effects/effect-highlight
 //= require cocoon
 //= require global
-//= require jquery-ui/effects/effect-highlight
+
+

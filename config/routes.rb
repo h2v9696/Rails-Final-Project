@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   scope "(:locale)", locale: /en|vi/ do
     root "static_pages#home"
     get "/home", to: "static_pages#home"
@@ -11,8 +12,10 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
     get "/auth/:provider/callback", to: "sessions#create"
     get "/auth/failure", to: "sessions#failure"
-
+    get "/cart", to: "carts#show"
     get "/product/:id", to: "products#show"
+    
+    resources :orders, only: [:new, :create, :index]
     resources :users
     resources :products, except: [:show]
     resources :account_activations, only: :edit
