@@ -13,16 +13,15 @@ class ProductsController < ApplicationController
     # auto complete
     def autocomplete
         if params[:term]
-            @products = Product.search(params[:term]);
+            @products = Product.search(params[:term]).limit(10)
         else
-            puts "1"
-            @products = Product.all
+            @products = Product.limit(10)
         end
 
         @result = Array.new
         @products.each do |item|
-            puts item.name
-            hash = { "value" => item.name}
+            puts item.id
+            hash = { "value" => item.name, "id" => item.id , "price" => item.price, "manufactuer"=>item.manufacturer }
             @result << hash
         end
 
