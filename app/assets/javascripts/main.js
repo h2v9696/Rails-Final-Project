@@ -30,6 +30,7 @@
         });
     }
 
+
 $(document).on('turbolinks:load', function () {
     //slide
     $(".owl-carousel").owlCarousel({
