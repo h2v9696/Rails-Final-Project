@@ -1481,7 +1481,7 @@ html, body, .wrapper {
   position: relative;
 }
 
-.login-container input[type=text], input[type=password] {
+.login-container input[type=text], .logininput[type=password] {
   height: 44px;
   font-size: 16px;
   width: 100%;
@@ -1496,7 +1496,7 @@ html, body, .wrapper {
   -moz-box-sizing: border-box;
 }
 
-.login-container input[type=text]:hover, input[type=password]:hover {
+.login-container input[type=text]:hover, .login-container input[type=password]:hover {
   border: 1px solid #b9b9b9;
   border-top: 1px solid #a0a0a0;
   -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -1708,4 +1708,166 @@ hr {
 .fa.fa-pencil.fa-2x.edit-btn, .fa.fa-times-circle.fa-2x.delete-btn {
   color: #333333;
   cursor: pointer;
+}
+
+//login modal
+#dialog-login .modal-dialog {
+  width: 25%;
+  font-size: 14px;
+  font-family: "brandon-grotesque", sans-serif;
+}
+
+#dialog-login .gradient {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 5px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  background: #1CB94E;
+}
+
+#dialog-login .modal-body h1 {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 40px;
+  color: rgba(52, 73, 94,1.0);
+}
+
+#dialog-login .modal-body p {
+  text-align: center;
+}
+
+#dialog-login .modal-body input {
+  width: 100%;
+  padding:0 0 6px 0;
+  margin-bottom: 25px;
+  border: none;
+  border-bottom: 1px solid rgba(127, 140, 141,0.7);
+  font-size: 16px;
+}
+#dialog-login .modal-body .login{
+  //position: relative;
+  width: 70%;
+  margin: 0 auto;
+}
+#dialog-login .modal-body .switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  top: 2px;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.checked {
+  background-color: rgba(39, 174, 96,1.0);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+.checked:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 17px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+#dialog-login .modal-body a span {
+  color: rgba(127, 140, 141,1)
+}
+.remember {
+  display: table;
+  float:right;
+  margin-bottom: 30px;
+}
+.remember label {
+  float:left;
+
+}
+.remember p {
+  float: left;
+  margin-right:10px;
+}
+
+.modal-body .btn-login {
+  background: rgba(39, 174, 96,1.0);
+  border: none  !important;
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 !important;
+  font-size: 18px;
+  font-weight: 500;
+  transition: all 0.4s;
+}
+.modal-body .btn-login:hover {
+  background: rgba(46, 204, 113,1.0);
+}
+
+#sign_in {
+  position: absolute;
+  bottom: -80px;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: #3B5998;
+  border-radius: 7px;
+  font-size: 25px;
+  font-weight: 700;
+  padding: 0.7em;
+  text-align: center;
+}
+#sign_in p {
+  margin: 0;
+  display: inline-block;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: white;
 }

@@ -44,7 +44,7 @@ ready = function () {
                 $(".cart.inModal").animate({height: 'toggle', opacity: 'toggle'}, 'slow');
             });
             $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index_gradient])
-            $('.prod_modal .image .add_to_card_details').css('background', gradient[index_gradient + 1])
+            $('.prod_modal .image .add_to_card_details').css('background', gradient[index_gradient - 1])
             $('#dialog-details').modal("show");
 
         }, "html");
@@ -54,6 +54,11 @@ ready = function () {
 $('#login').click(function (e) {
     $.get("/login", function (data) {
         $('.modal-body').html(data);
+        $('.slider').click(function (e) {
+            $('.slider').toggleClass('checked');
+            $('.slider:before').toggleClass('checked');
+        })
+        $('#dialog-login .gradient').css('background', gradient[index_gradient])
     })
     $('#dialog-login').modal("show");
 });
@@ -355,7 +360,7 @@ $('#fullpage').fullpage({
                 $('#gradient').css('background', gradient[0])
                 $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
                 $('.prod_modal .image .add_to_card_details').css('background', gradient[index - 1])
-                index_gradient = index
+                index_gradient = index - 2
             }
             if (direction === 'down') {
                 $('.section.best-sell').css('background', 'none')
@@ -370,7 +375,7 @@ $('#fullpage').fullpage({
                 $('#gradient').css('background', gradient[1])
                 $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
                 $('.prod_modal .image .add_to_card_details').css('background', gradient[index - 2])
-                index_gradient = index
+                index_gradient = index - 2
             }
             if (direction === 'down') {
                 $('#gradient').css('background', gradient[3])
@@ -384,7 +389,7 @@ $('#fullpage').fullpage({
                 $('#gradient').css('background', gradient[2])
                 $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
                 $('.prod_modal .image .add_to_card_details').css('background', gradient[index - 2])
-                index_gradient = index
+                index_gradient = index -2
             }
             if (direction === 'down') {
                 $('#gradient').css('background', gradient[4])
@@ -397,7 +402,7 @@ $('#fullpage').fullpage({
             $('#gradient').css('background', gradient[3])
             $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index - 1])
             $('.prod_modal .image .add_to_card_details').css('background', gradient[index - 2])
-            index_gradient = index
+            index_gradient = index - 1
         }
     },
 
