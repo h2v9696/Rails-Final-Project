@@ -8,11 +8,11 @@ RailsAdmin.config do |config|
 
   config.authorize_with do |controller|
     if current_user.nil?
-      redirect_to main_app.login_path
-      flash[:danger] = t "danger.log_in"
+      redirect_to main_app.root_path
+      flash[:error] = t "danger.log_in"
     elsif !current_user.is_admin?
       redirect_to main_app.root_path
-      flash[:danger] = "Only admin account can access this!"
+      flash[:error] = "Only admin account can access this!"
     end
   end
 
