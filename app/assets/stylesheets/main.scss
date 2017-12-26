@@ -1059,10 +1059,11 @@ h1, h2, h3, h4 {
 }
 
 .prod_modal .image a {
-  cursor: auto;
+  cursor: pointer;
   padding: 17px 60px;
   border-radius: 7px;
   font-size: 18px;
+  font-weight: 600;
   text-align: center;
   color: rgba(236, 240, 241, 0.5);
   text-decoration: none;

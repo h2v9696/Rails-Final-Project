@@ -1,7 +1,6 @@
 var ready;
 ready = function () {
     //slide
-    
     $('#search_text').autocomplete({
         source: "products/autocomplete",
         minLength: 1,
@@ -86,57 +85,11 @@ $('#login').click(function (e) {
     $('#dialog-login').modal("show");
 });
 
-// $('#order, #manufactuer, #category').change(function () {
-//     var order = document.getElementById('order').value;
-//     var manufactuer = document.getElementById('manufactuer').value;
-//     var category = document.getElementById('category').value;
-//     $.ajax({
-//         dataType: 'json',
-//         type: 'POST',
-//         url: '/allproduct/filter',
-//         data: {
-//             order: order,
-//             manufactuer: manufactuer,
-//             category: category
-//         },
-//         success: function (response) {
-//             $("#show").html(response['html']);
-//             var loadedData = response['loadedData'];
-//             $('.item-over-lay').click(function (e) {
-//                 var productId = $(this).attr('data-ProductID');
-//                 show_details(loadedData[productId]);
-//             })
-//             $(".add_to_card").on('click', function (e) {
-//                 e.stopPropagation();
-//                 addToCart(this);
-//             });
-//
-// // quick buy
-//             $(".quick_buy_button").on('click', function (e) {
-//                 e.stopPropagation();
-//                 addToCart(this);
-//             });
-//         },
-//         error: function (xhr, testStatus, thrownError) {
-//             alert("Error");
-//         }
-//     });
-// });
-
-//  search_ajax + animate
-//  $('#search_text').autocomplete({
-//     source: "/search/autocomplete",
-//     minLength: 1,
-//     select: function (event, ui) {
-//         $('#search_text').val(ui.item.value);
-//         var data = ui["item"]["Product"];
-//         show_details(data);
-//     }
-// });
 $("#adv-search").hide();
 $("#btn-search").click(function (event) {
     $(this).toggleClass("active");
-    $("#adv-search").toggle("slide", {direction: "right"}, 250);
+    $("#adv-search").animate({width:'toggle'},250);
+
 });
 
 
@@ -357,7 +310,7 @@ $(document).ready(function () {
 
 
 // full Page
-var index_gradient = 2;
+var index_gradient = 3;
 var gradient = [
     "#dfdfdf",
     "linear-gradient(135deg, rgba(255,174,39,1) 0%,rgba(222,73,109,1) 100%",
@@ -374,7 +327,7 @@ $('#fullpage').fullpage({
             $('.slideshow').css('z-index', -100)
             $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
             $('.prod_modal .image .add_to_card_details').css('background', gradient[index + 1])
-            index_gradient = index
+            index_gradient = index + 1
         }
         if (index === 2) {
             if (direction === 'up') {
@@ -382,7 +335,7 @@ $('#fullpage').fullpage({
                 $('#gradient').css('background', gradient[0])
                 $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
                 $('.prod_modal .image .add_to_card_details').css('background', gradient[index - 1])
-                index_gradient = index - 2
+                index_gradient = index - 1
             }
             if (direction === 'down') {
                 $('.section.best-sell').css('background', 'none')
@@ -397,7 +350,7 @@ $('#fullpage').fullpage({
                 $('#gradient').css('background', gradient[1])
                 $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index])
                 $('.prod_modal .image .add_to_card_details').css('background', gradient[index - 2])
-                index_gradient = index - 2
+                index_gradient = index - 1
             }
             if (direction === 'down') {
                 $('#gradient').css('background', gradient[3])
