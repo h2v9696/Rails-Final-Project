@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
       if user && user.authenticate(params[:session][:password])
         if user.activated?
           log_in user
+          flash[:success] = t "success.login"
           params[:session][:remember_me] == "1" ? remember(user) : forget(user)
           redirect_back_or user
         else
@@ -16,15 +17,15 @@ class SessionsController < ApplicationController
           redirect_to root_url
         end
       else
-        flash.now[:danger] = t "danger.email"
-        render :new
+        flash[:error] = t "danger.email"
+        redirect_to root_url
       end
     else
       user = User.from_omniauth(request.env["omniauth.auth"])
       if user
         user.activate
         log_in user
-        flash[:success] = t "success.login"
+        flash.now[:success] = t "success.login"
         redirect_back_or user
       else
         redirect_to root_url
