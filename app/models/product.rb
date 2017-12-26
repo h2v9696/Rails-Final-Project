@@ -1,8 +1,4 @@
 class Product < ApplicationRecord
-  has_many :comments, class_name: "Comment", foreign_key: "product_id",
-    dependent: :destroy
-  has_many :commented_user, through: :comments, source: :user
-
   has_many :order_details, class_name: "OrderDetail", foreign_key: "product_id",
     dependent: :destroy
   has_many :ordered, through: :order_details, source: :order
@@ -12,7 +8,7 @@ class Product < ApplicationRecord
 
   belongs_to :category, class_name: "ProductCategory"
 
-  # Auto complete  
+  # Auto complete
   def self.search(term)
     where('LOWER(name) LIKE :term OR LOWER(manufacturer) LIKE :term', term: "%#{term.downcase}%")
   end

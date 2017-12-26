@@ -83,16 +83,18 @@
                     </tr>
                   </thead>
                   <tbody id="items">
-                    <tr>
                       <% @user.orders.each do |order| %>
+                    <tr>
+
                         <td><%= order.id %></td>
                         <td><%= order.created_at %></td>
                         <td><%= order.country +
                           ", " + order.city +
                           ", " + order.address %></td>
                         <td><%= order.phone %></td>
-                      <% end %>
                     </tr>
+
+                      <% end %>
                   </tbody>
                 </table>
                 <hr>

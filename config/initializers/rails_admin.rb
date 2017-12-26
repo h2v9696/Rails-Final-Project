@@ -16,6 +16,20 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model "Product" do
+      exclude_fields :comments, :order_details, :ordered, :commented_user
+    edit do
+      configure :update_date do
+        hide
+      end
+    end
+  end
+
+  config.model "User" do
+      exclude_fields :comments, :commented_product, :orders
+    edit do
+    end
+  end
   ### Popular gems integration
 
   ## == Devise ==
@@ -48,7 +62,6 @@ RailsAdmin.config do |config|
     show
     edit
     delete
-    show_in_app
 
     ## With an audit adapter, you can add:
     # history_index
