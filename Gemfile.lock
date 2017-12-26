@@ -58,6 +58,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    alertifyjs-rails (1.11.0)
     arel (8.0.0)
     autoprefixer-rails (7.2.3)
       execjs
@@ -69,6 +70,7 @@ GEM
       sass (>= 3.3.4)
     bootstrap-will_paginate (0.0.10)
       will_paginate
+    bootstrap_form (2.7.0)
     builder (3.2.3)
     byebug (9.1.0)
     capybara (2.16.1)
@@ -316,9 +318,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  alertifyjs-rails
   bcrypt (= 3.1.11)
   bootstrap-sass (= 3.3.6)
   bootstrap-will_paginate (= 0.0.10)
+  bootstrap_form
   byebug
   capybara (~> 2.13)
   cloudinary

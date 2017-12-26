@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   def find_user
     @user = User.find_by id: params[:id]
     unless @user
-      flash[:danger] = t "danger.find_user", param: params[:id]
+      flash[:error] = t "danger.find_user", param: params[:id]
       redirect_to root_path
     end
   end
@@ -65,21 +65,21 @@ class UsersController < ApplicationController
   def logged_in_user
     unless logged_in?
       store_location
-      flash[:danger] = t "danger.log_in"
+      flash[:error] = t "danger.log_in"
       redirect_to login_url
     end
   end
 
   def correct_user
     unless @user.current_user? current_user
-      flash[:danger] = t "danger.access"
+      flash[:error] = t "danger.access"
       redirect_to root_path
     end
   end
 
   def admin_user
     unless current_user.is_admin?
-      flash[:danger] = t "danger.access"
+      flash[:error] = t "danger.access"
       redirect_to users_path
     end
   end

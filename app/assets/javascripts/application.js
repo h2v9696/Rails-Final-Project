@@ -26,5 +26,4 @@
 //= require jquery-ui/effect-highlight
 //= require cocoon
 //= require global
-
-
+//= require alertify
