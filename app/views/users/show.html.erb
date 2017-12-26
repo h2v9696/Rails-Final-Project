@@ -33,6 +33,7 @@
 
           <div class="tab-content">
             <div class="tab-pane active" id="home">
+            <% if @user.user_details.any? %>
               <div class="table-responsive">
                 <table class="table table-striped">
                   <thead>
@@ -63,7 +64,9 @@
                   </div>
                 </div>
               </div><!--/table-resp-->
-
+              <% else %>
+                <h3>No details</h3>
+              <% end %>
               <hr>
 
              </div><!--/tab-pane-->
