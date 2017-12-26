@@ -28,8 +28,6 @@ gem "jquery-ui-rails"
 gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
 gem "cloudinary"
 gem "observejs"
-gem "alertifyjs-rails"
-gem "bootstrap_form"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
     get "/cart", to: "carts#show"
     get "/product/:id", to: "products#show"
-
+    
     resources :orders, only: [:new, :create, :index]
     resources :users
     resources :products, except: [:show]
