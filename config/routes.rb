@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
     get "/auth/:provider/callback", to: "sessions#create"
     get "/auth/failure", to: "sessions#failure"
+
+    get "/products/autocomplete", to: "products#autocomplete"
+    get "/product/:id", to: "products#show"
+
     get "/cart", to: "carts#show"
     get "/product/:id", to: "products#show"
 

@@ -1,6 +1,30 @@
 var ready;
 ready = function () {
     //slide
+    
+    $('#search_text').autocomplete({
+        source: "products/autocomplete",
+        minLength: 1,
+        select: function (event, ui) {
+            console.log(event);
+            $('#search_text').val(ui.item);
+            var id = ui["item"]["id"];
+            show_details(id, $('#id' + id).attr("src"));
+        }
+        }).autocomplete('instance')._renderItem = function(ul, item) {
+            var a = Math.floor(Math.random()*10 +1);
+            var markup = [
+                '<span class="img">',
+                '<img id = "id' + item.id  + '" src =' + $('#' + a).attr("src") + '/>',
+                '</span>',
+                '<span class="title">' + item.value + '</span>',
+                '<span class="author">' + item.manufactuer + '</span>',
+                '<span class="price">' + item.price + '</span>'];
+            return $('<li class = "abc">')
+                .append(markup.join(''))
+                .appendTo(ul);
+        };
+
     $(".owl-carousel").owlCarousel({
         center: true,
         items: 2,
@@ -46,7 +70,6 @@ ready = function () {
             $('.prod_modal .image .quick_buy_button_details').css('background', gradient[index_gradient])
             $('.prod_modal .image .add_to_card_details').css('background', gradient[index_gradient - 1])
             $('#dialog-details').modal("show");
-
         }, "html");
     }
 
@@ -99,7 +122,6 @@ $('#login').click(function (e) {
 //         }
 //     });
 // });
-
 
 //  search_ajax + animate
 //  $('#search_text').autocomplete({
@@ -424,3 +446,4 @@ $(document).on('page:load', ready);
 $("#prospects_form").submit(function (e) {
     e.preventDefault();
 });
+
