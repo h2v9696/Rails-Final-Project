@@ -1,7 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @best_products = Product.limit 12
-    @new_products = Product.order("update_date desc").limit 12
+    @home_products = Product.limit 12
   end
 
   def index
