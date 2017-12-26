@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem "rails", "~> 5.1.4"
+gem "faker", "1.6.6"
 gem "mysql2", ">= 0.3.18", "< 0.5"
 gem "puma", "~> 3.7"
 gem "sass-rails", "~> 5.0"
@@ -17,12 +18,24 @@ gem "bootstrap-sass","3.3.6"
 gem "yaml_db"
 gem "bcrypt", "3.1.11"
 gem "jquery-rails"
+gem "will_paginate", "3.1.0"
+gem "bootstrap-will_paginate", "0.0.10"
 gem "font-awesome-sass"
+gem "config"
+gem "omniauth-facebook"
+gem "cocoon"
+gem "jquery-ui-rails"
+gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
+gem "cloudinary"
+gem "observejs"
+gem "alertifyjs-rails"
+gem "bootstrap_form"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "capybara", "~> 2.13"
   gem "selenium-webdriver"
+  gem "letter_opener"
 end
 
 group :development do

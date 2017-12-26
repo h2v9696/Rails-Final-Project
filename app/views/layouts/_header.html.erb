@@ -4,7 +4,7 @@
             <!--logo-->
             <div class="big-logo">
                 <a href="/">
-                    <%= image_tag("logo.png", alt: "Logo") %>
+                    <%= cl_image_tag("logo.png", alt: "Logo") %>
                     <div id="logo-text"><h1 id="name">5 Birds</h1>
                         <span>Shop</span>
                         <sup>tm</sup></div>
@@ -17,25 +17,18 @@
                   <div class="menu">
                       <ul>
                           <li><a href="/home">Home</a></li>
-                          <li><a href="#">Products</a></li>
+                          <li><%= link_to "Products", products_path %></li>
                           <% if logged_in? %>
-                            <li><%= link_to "Users", "#{}" %></li>
-                            <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Account <b class="caret"></b>
-                              </a>
-
-                                <li><%= link_to "Profile", current_user %></li>
-                                <li><%= link_to "Settings", "#" %></li>
-                                <li class="divider"></li>
-                                <li>
-                                  <%= link_to "Log out", logout_path, method: :delete %>
-                                </li>
+                            <% if current_user.is_admin? %>
+                              <li><%= link_to "Manager", rails_admin_path %></li>
+                            <% end %>
+                            <li><%= link_to "Profile", current_user %></li>
+                            <li>
+                              <%= link_to "Log out", logout_path, method: :delete %>
                             </li>
                           <% else %>
-                            <li><%= link_to "Log in", login_path %></li>
+                            <li id="login"> <a>Log in </a></li>
                           <% end %>
-
                       </ul>
                   </div>
                 </div>
@@ -47,15 +40,30 @@
                    aria-hidden="true" id="btn-search"></i>
                 <form method="get" action="/search">
                   <div class="input-group" id="adv-search">
-                      <input type="text" id="search_text" name="key" placeholder="Search for products"/>
-                      <div class="input-group-btn">
-                          <div class="btn-group" role="group">
-                              <button type="submit" class="btn btn-primary" id="btn-not-show"></button>
-                          </div>
-                      </div>
+                        <input type="text" id="search_text" name="key" placeholder="Search for products"/>
+                        <div class="input-group-btn">
+                            <div class="btn-group" role="group">
+                                <button type="submit" class="btn btn-primary" id="btn-not-show"></button>
+                            </div>
+                        </div>
+                        <img style="display: none" id="1" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="2" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="3" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="4" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="5" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="6" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="7" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="8" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="9" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="10" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        
                   </div>
                 </form>
             </div>
+
+            <script>
+                
+            </script>
 
             <!--order-check-->
             <div class="order-box">
@@ -63,7 +71,7 @@
             </div>
 
             <div class="cart">
-                <p id="nothing">Nothing has been chosen</p>
+                <p class="nothing">Nothing has been chosen</p>
             </div>
         </div>
     </div>

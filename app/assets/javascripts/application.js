@@ -13,11 +13,17 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery
+//= require observejs
+//= require fb
+//= require bootstrap-sprockets
 //= require jquery_ujs
-//= require handlebars
 //= require jquery.fullpage
 //= require prefixfree.min
 //= require owl.carousel.min
 //= require jquery-ui
-//= require jquery.easing.1.3
 //= require main
+//= require jquery-ui/effect-highlight
+//= require cocoon
+//= require global
+//= require alertify
+

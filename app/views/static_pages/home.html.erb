@@ -6,14 +6,13 @@
         <div class="wrap"><h1>We are Birds. We can fly.</h1></div>
     </div>
 </div>
-
 <div class="slideshow">
     <div class="owl-carousel">
-        <%= image_tag("slide_1.jpg", alt: "Slide") %>
-        <%= image_tag("slide_2.jpg", alt: "Slide") %>
-        <%= image_tag("slide_3.jpg", alt: "Slide") %>
-        <%= image_tag("slide_4.jpg", alt: "Slide") %>
-        <%= image_tag("slide_5.jpg", alt: "Slide") %>
+        <%= cl_image_tag("slide_1.jpg", alt: "Slide") %>
+        <%= cl_image_tag("slide_2.jpg", alt: "Slide") %>
+        <%= cl_image_tag("slide_3.jpg", alt: "Slide") %>
+        <%= cl_image_tag("slide_4.jpg", alt: "Slide") %>
+        <%= cl_image_tag("slide_5.jpg", alt: "Slide") %>
     </div>
 </div>
 
@@ -27,7 +26,7 @@
                     <h1>BEST</h1>
                     <h2>SELLING</h2>
                 </div>
-                <!-- Handle best selling -->
+                <%= render @best_products %>
             </div>
         </div>
     </div>
@@ -39,7 +38,7 @@
                     <h1>MOST</h1>
                     <h2>NEW</h2>
                 </div>
-                <!-- Handle new product -->
+                <%= render @new_products %>
             </div>
         </div>
 
@@ -52,7 +51,7 @@
                     <h1>HOT</h1>
                     <h2>SAIKIN</h2>
                 </div>
-                <!-- Handle hot product -->
+                <%= render @best_products %>
             </div>
         </div>
     </div>
@@ -71,3 +70,4 @@
         </div>
     </div>
 </div>
+
