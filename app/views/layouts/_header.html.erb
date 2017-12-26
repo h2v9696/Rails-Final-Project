@@ -4,7 +4,7 @@
             <!--logo-->
             <div class="big-logo">
                 <a href="/">
-                    <%= image_tag("logo.png", alt: "Logo") %>
+                    <%= cl_image_tag("logo.png", alt: "Logo") %>
                     <div id="logo-text"><h1 id="name">5 Birds</h1>
                         <span>Shop</span>
                         <sup>tm</sup></div>
@@ -19,7 +19,9 @@
                           <li><a href="/home">Home</a></li>
                           <li><%= link_to "Products", products_path %></li>
                           <% if logged_in? %>
-                            <li><%= link_to "Users", users_path %></li>
+                            <% if current_user.is_admin? %>
+                              <li><%= link_to "Manager", rails_admin_path %></li>
+                            <% end %>
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Account <b class="caret"></b>
@@ -33,7 +35,8 @@
                                 </li>
                             </li>
                           <% else %>
-                            <li><%= link_to "Log in", login_path %></li>
+                            <!--<li><%= link_to "Log in", login_path %></li>-->
+                            <li id="login"> <a>Log in </a></li>
                           <% end %>
 
                       </ul>
@@ -63,22 +66,21 @@
                     source: "products/autocomplete",
                     minLength: 1,
                     select: function (event, ui) {
-                    $('#search_text').val(ui.item);
-                    var id = ui["item"]["id"];
-                    show_details(id);
+                        $('#search_text').val(ui.item);
+                        var id = ui["item"]["id"];
                     }
-                }).autocomplete('instance')._renderItem = function(ul, item) {
-                var markup = [
-                    '<span class="img">',
-                    '<img src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />',
-                    '</span>',
-                    '<span class="title">' + item.value + '</span>',
-                    '<span class="author">' + item.manufactuer + '</span>',
-                    '<span class="price">' + item.price + '</span>'];
-                return $('<li class = "abc">')
-                    .append(markup.join(''))
-                    .appendTo(ul);
-                };
+                    }).autocomplete('instance')._renderItem = function(ul, item) {
+                    var markup = [
+                        '<span class="img">',
+                        '<img src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />',
+                        '</span>',
+                        '<span class="title">' + item.value + '</span>',
+                        '<span class="author">' + item.manufactuer + '</span>',
+                        '<span class="price">' + item.price + '</span>'];
+                    return $('<li class = "abc">')
+                        .append(markup.join(''))
+                        .appendTo(ul);
+                    };
             </script>
 
             <!--order-check-->
@@ -87,7 +89,7 @@
             </div>
 
             <div class="cart">
-                <p id="nothing">Nothing has been chosen</p>
+                <p class="nothing">Nothing has been chosen</p>
             </div>
         </div>
     </div>

@@ -17,10 +17,4 @@
       </ul>
     <% end %>
   </td>
-  <td>
-    <% if current_user.is_admin? && !user.current_user?(current_user) %>
-      <%= link_to "Delete", user, method: :delete,
-        data: {confirm: "You sure?"} %>
-    <% end %>
-  </td>
 </tr>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221170438) do
+ActiveRecord::Schema.define(version: 20171222174731) do
 
   create_table "comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "user_id"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20171221170438) do
     t.integer "product_id", null: false
     t.string "name", limit: 250, null: false
     t.float "price", limit: 24, null: false
-    t.string "sku", limit: 50, null: false
     t.integer "quantity", null: false
     t.index ["order_id"], name: "fk_orderdetails_2_idx"
     t.index ["product_id"], name: "fk_orderdetails_1_idx"
@@ -36,21 +35,16 @@ ActiveRecord::Schema.define(version: 20171221170438) do
 
   create_table "orders", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "user_id", null: false
-    t.float "amount", limit: 24, null: false
-    t.string "ship_name", limit: 100, null: false
-    t.string "ship_address", limit: 100, null: false
     t.string "city", limit: 50, null: false
-    t.string "zip", limit: 20, null: false
     t.string "country", limit: 50, null: false
     t.string "phone", limit: 20, null: false
-    t.string "fax", limit: 20
-    t.float "shipping", limit: 24, null: false
-    t.float "tax", limit: 24, null: false
     t.string "email", limit: 100, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "shipped", default: false, null: false
     t.string "tracking_number", limit: 80
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address"
     t.index ["user_id"], name: "fk_orders_1_idx"
   end
 
