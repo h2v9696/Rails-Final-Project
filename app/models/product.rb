@@ -11,4 +11,9 @@ class Product < ApplicationRecord
     dependent: :destroy
 
   belongs_to :category, class_name: "ProductCategory"
+
+  # Auto complete  
+  def self.search(term)
+    where('LOWER(name) LIKE :term OR LOWER(manufacturer) LIKE :term', term: "%#{term.downcase}%")
+  end
 end

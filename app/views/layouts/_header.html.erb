@@ -50,15 +50,30 @@
                    aria-hidden="true" id="btn-search"></i>
                 <form method="get" action="/search">
                   <div class="input-group" id="adv-search">
-                      <input type="text" id="search_text" name="key" placeholder="Search for products"/>
-                      <div class="input-group-btn">
-                          <div class="btn-group" role="group">
-                              <button type="submit" class="btn btn-primary" id="btn-not-show"></button>
-                          </div>
-                      </div>
+                        <input type="text" id="search_text" name="key" placeholder="Search for products"/>
+                        <div class="input-group-btn">
+                            <div class="btn-group" role="group">
+                                <button type="submit" class="btn btn-primary" id="btn-not-show"></button>
+                            </div>
+                        </div>
+                        <img style="display: none" id="1" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="2" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="3" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="4" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="5" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="6" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="7" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="8" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="9" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        <img style="display: none" id="10" src = <%= asset_path "products/" + rand(1..40).to_s + ".jpg" %> />
+                        
                   </div>
                 </form>
             </div>
+
+            <script>
+                
+            </script>
 
             <!--order-check-->
             <div class="order-box">
